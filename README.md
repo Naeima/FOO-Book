@@ -1,2 +1,2 @@
 # FOO-docs
-Online documentation for Linked Data  Developers.
+Online documentation for the Forest Observatory Ontology.
