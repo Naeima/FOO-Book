@@ -9,7 +9,8 @@ To make  FOO findable on the web in different interoperable formats after publis
 
 ![FOO Publication ](/img/publication.png)
 
-## Bioportal Screenshot 
+## Bioportal Screenshot # [Click here]([https://bioportal.bioontology.org/ontologies/FOO])
+
 
 ![FOO Bioportal ](/img/Bioportal.png)
 
