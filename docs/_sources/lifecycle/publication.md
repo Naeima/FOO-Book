@@ -15,6 +15,3 @@ To make  FOO findable on the web in different interoperable formats after publis
 
 ![FOO Bioportal ](/img/Bioportal.png)
 
-
-```{bibliography}
-```
