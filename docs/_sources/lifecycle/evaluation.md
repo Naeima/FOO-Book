@@ -36,5 +36,4 @@ A screenshot of the reasoner's report is available here. Nonetheless,  the infer
 ![Pellet](/img/Pellet.png)
 
 
-```{bibliography}
-```
+
