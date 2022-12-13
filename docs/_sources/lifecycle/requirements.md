@@ -7,5 +7,3 @@
 ![FOO ORSD2](/img/ORSD3.png)
 
 
-```{bibliography}
-```
