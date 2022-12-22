@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>FOO Evaluation &#8212; Forest Observatory Ontology (FOO)</title>
+    <title>Animal GPS Collars Data &#8212; Forest Observatory Ontology (FOO)</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -52,8 +52,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="FOO Publication" href="publication.html" />
-    <link rel="prev" title="FOO Implementation" href="implementation.html" />
+    <link rel="next" title="Soil Sensor Data" href="soil.html" />
+    <link rel="prev" title="FOO Publication" href="../lifecycle/publication.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -118,30 +118,69 @@ const thebe_selector_output = ".output, .cell_output"
   FOO Lifecycle
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="development.html">
+  <a class="reference internal" href="../lifecycle/development.html">
    FOO Development
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="requirements.html">
+  <a class="reference internal" href="../lifecycle/requirements.html">
    FOO Requirements
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="implementation.html">
+  <a class="reference internal" href="../lifecycle/implementation.html">
    FOO Implementation
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lifecycle/evaluation.html">
    FOO Evaluation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="publication.html">
+  <a class="reference internal" href="../lifecycle/publication.html">
    FOO Publication
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Sources
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Animal GPS Collars Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="soil.html">
+   Soil Sensor Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="veg.html">
+   Vegetation and Habitat Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="image.html">
+   Camera Trap Images
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  FOO playground
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../playground/query.html">
+   SPARQL executable queries
   </a>
  </li>
 </ul>
@@ -258,7 +297,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/Naeima/Forest-Observatory-Ontology# Online location of your book/issues/new?title=Issue%20on%20page%20%2Flifecycle/evaluation.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/Naeima/Forest-Observatory-Ontology# Online location of your book/issues/new?title=Issue%20on%20page%20%2FData/collar.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -286,7 +325,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/lifecycle/evaluation.md"
+        <a href="../_sources/Data/collar.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -323,80 +362,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#oops-pitfall-scanner">
-   Oops! Pitfall Scanner
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#oops-results">
-   Oops! Results
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pellet-evaluation">
-   Pellet Evaluation
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>FOO Evaluation</h1>
+                <h1>Animal GPS Collars Data</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#oops-pitfall-scanner">
-   Oops! Pitfall Scanner
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#oops-results">
-   Oops! Results
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pellet-evaluation">
-   Pellet Evaluation
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -404,34 +386,11 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="foo-evaluation">
-<h1>FOO Evaluation<a class="headerlink" href="#foo-evaluation" title="Permalink to this headline">#</a></h1>
-<section id="oops-pitfall-scanner">
-<h2>Oops! Pitfall Scanner<a class="headerlink" href="#oops-pitfall-scanner" title="Permalink to this headline">#</a></h2>
-<p>The online freeware scanner detected the structure pitfalls classifying them into three categories, “critical, essential and minor”.
-FOO had a first rough pass containing different minor pitfalls.
-Generally speaking, minor pitfalls have no significant impact on ontology performance rather than making it look nice.
-That said, minor pitfalls such as (i.e., P08 -missing annotation) could degrade the quality of the semantic ontology representation.</p>
-<p><img alt="FOO Oops! Scanner" src="../_images/Oops.png" /></p>
-</section>
-<section id="oops-results">
-<h2>Oops! Results<a class="headerlink" href="#oops-results" title="Permalink to this headline">#</a></h2>
-<p><img alt="FOO Oops! collage" src="../_images/Oopscollage.png" /></p>
-<ul class="simple">
-<li><p><strong>A</strong>- P04: the eight minor cases detected the unconnected elements in FOO. We imported directly from the BBC wildlife and the common creative licence website. Although we connected most of the imported elements, few remain for future expansion. Therefore, we take no action to alter block A.</p></li>
-<li><p><strong>B</strong>- P08: reported on missing annotations on thirty-eight cases. We revised the ontology and found that all these elements are duplicates of annotated ones. that is, FOO incurred two copies of them where one copy is missing the annotation. We eliminated duplicates and solved the pitfall case.</p></li>
-<li><p><strong>C</strong>- P13: flagged another thirty-three cases with undeclared inverse relationships. Given that we adapted these elements, we have no authority in this context to modify them. Therefore, we ignored the P13 result.</p></li>
-<li><p><strong>D</strong>- P22: We acknowledge that using the same naming conventions in the ontology is one of the W3c recommendations for best practice. However, we anticipated this case due to the nature of FOO, which reuses different ontologies. As we mentioned above at <strong>P13</strong>, we have no right to modify adopted ontologies’ elements.</p></li>
-</ul>
-</section>
-<section id="pellet-evaluation">
-<h2>Pellet Evaluation<a class="headerlink" href="#pellet-evaluation" title="Permalink to this headline">#</a></h2>
-<p>Pellet is an open-source OWL-DL reasoner. It has a good performance reputation for detecting contradicting facts in ontologies.
-Pellet can also make inferences and answer SPARQL queries. We used the protege’s plug-in pellet version to reason over FOO and check for inconsistencies.
-Pellet processed FOO in 29 ms, computing the inferences for entities’ hierarchies and detecting no contradictions.
-A screenshot of the reasoner’s report is available here. Nonetheless,  the inferred axioms have been published as an ontology in FOO Github.</p>
-<p><img alt="Pellet" src="../_images/Pellet.png" /></p>
-<span class="target" id="id1"></span></section>
+  <section class="tex2jax_ignore mathjax_ignore" id="animal-gps-collars-data">
+<h1>Animal GPS Collars Data<a class="headerlink" href="#animal-gps-collars-data" title="Permalink to this headline">#</a></h1>
+<p>The Danau Girang Field Centre (DGFC) <a class="reference external" href="https://www.dgfc.life/home/">https://www.dgfc.life/home/</a> provided us with the collars data for elephants. Collars weighing approximately 14 kg each were officially placed around the elephants’ necks to record numerous metrics  every two hours, including time, geolocation, and temperature.
+In this study, we modelled twenty-two adult Asian elephants (Elephas maximus), fourteen females and eight males. The collars were created by Africa Wildlife Tracking and fitted ethically by a team of researchers, trackers, and a wildlife vet. Each collar had a Global Positioning System (GPS) receiver and a Very High Frequency (VHF) transmitter. At predetermined intervals, the GPS uploaded each individual’s geographical location information to the Globaltrack server, which could be officially obtained from the Globaltrack website (<a class="reference external" href="http://www.globaltrack.com">http://www.globaltrack.com</a>). The built-in VHF transmitter aided in retrieving collars that had come off naturally or in locating an individual when additional monitoring was required. The observations in those datasets cover the period range between 2012 to 2018. We refrain from publishing the datasets used in this study because they could be misused to locate an endangered species at risk of poaching.</p>
+<p><img alt="Animal GPS Collars Data" src="../_images/collar.png" /></p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -447,7 +406,7 @@ A screenshot of the reasoner’s report is available here. Nonetheless,  the inf
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./lifecycle"
+            path: "./Data"
         },
         predefinedOutput: true
     }
@@ -461,17 +420,17 @@ A screenshot of the reasoner’s report is available here. Nonetheless,  the inf
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="implementation.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../lifecycle/publication.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">FOO Implementation</p>
+            <p class="prev-next-title">FOO Publication</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="publication.html" title="next page">
+    <a class='right-next' id="next-link" href="soil.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">FOO Publication</p>
+        <p class="prev-next-title">Soil Sensor Data</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
