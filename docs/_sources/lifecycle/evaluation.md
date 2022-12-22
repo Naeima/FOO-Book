@@ -16,13 +16,13 @@ That said, minor pitfalls such as (i.e., P08 -missing annotation) could degrade 
 ![FOO Oops! collage](/img/Oopscollage.png)
 
 
-- P04: the eight minor cases detected the unconnected elements in FOO. We imported directly from the BBC wildlife and the common creative licence website. Although we connected most of the imported elements, few remain for future expansion. Therefore, we take no action to alter block A. 
+- **A**- P04: the eight minor cases detected the unconnected elements in FOO. We imported directly from the BBC wildlife and the common creative licence website. Although we connected most of the imported elements, few remain for future expansion. Therefore, we take no action to alter block A. 
 
-- P08: reported on missing annotations on thirty-eight cases. We revised the ontology and found that all these elements are duplicates of annotated ones. that is, FOO incurred two copies of them where one copy is missing the annotation. We eliminated duplicates and solved the pitfall case. 
+- **B**- P08: reported on missing annotations on thirty-eight cases. We revised the ontology and found that all these elements are duplicates of annotated ones. that is, FOO incurred two copies of them where one copy is missing the annotation. We eliminated duplicates and solved the pitfall case. 
 
-- P13: flagged another thirty-three cases with undeclared inverse relationships. Given that we adapted these elements, we have no authority in this context to modify them. Therefore, we ignored the P13 result. 
+- **C**- P13: flagged another thirty-three cases with undeclared inverse relationships. Given that we adapted these elements, we have no authority in this context to modify them. Therefore, we ignored the P13 result. 
 
-- P22: We acknowledge that using the same naming conventions in the ontology is one of the W3c recommendations for best practice. However, we anticipated this case due to the nature of FOO, which reuses different ontologies. As we mentioned above at \textbf{P13}, we have no right to modify adopted ontologies' elements.   
+- **D**- P22: We acknowledge that using the same naming conventions in the ontology is one of the W3c recommendations for best practice. However, we anticipated this case due to the nature of FOO, which reuses different ontologies. As we mentioned above at **P13**, we have no right to modify adopted ontologies' elements.   
 
 
 ## Pellet Evaluation
