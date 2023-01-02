@@ -1,3 +1,0 @@
-
-## SPARQL executable queries 
-
