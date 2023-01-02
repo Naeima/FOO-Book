@@ -8,7 +8,7 @@ https://github.com/Naeima/Forest-Observatory-Ontology/blob/a6b04b49d0c0401d4b5e6
 
 - Creat a folder named STARDOG_HOME in (Documents). Then add path to environment as named.
 
--  Extracted Stardog downloaded zip folder to (Desktop) - different location to STARDOG_HOME (preferrable).
+-  Extract Stardog from the downloaded zip folder to (Desktop) - different location to STARDOG_HOME (preferrable).
 
 -  In environment tab again, add the path for the extracted folder.
 
