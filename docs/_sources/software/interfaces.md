@@ -4,7 +4,7 @@ https://github.com/Naeima/Forest-Observatory-Ontology/blob/a6b04b49d0c0401d4b5e6
 
 # How to install Stardog
 
-- Download Stardog windows distribution from https://www.stardog.com/get-started/
+- Download Stardog distribution from https://www.stardog.com/get-started/
 
 - Creat a folder named STARDOG_HOME in (Documents). Then add path to environment as named.
 
