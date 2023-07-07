@@ -1,0 +1,43 @@
+
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: FOO Lifecycle
+  chapters:
+  - file: lifecycle/development
+  - file: lifecycle/requirements
+  - file: lifecycle/implementation
+  - file: lifecycle/evaluation
+  - file: lifecycle/publication
+
+- caption: Data Sources 
+  chapters:
+  - file: Data/collar
+  - file: Data/soil
+  - file: Data/soilRml
+  - file: Data/soilYarrrml
+  - file: Data/soilKG
+  - file: Data/veg
+  - file: Data/image
+  - file: Data/RML
+
+- caption: FOO playground
+  chapters:
+  - file: playground/notebooks
+
+- caption: FOO DOWNLOADS
+  chapters:
+  - file: linked/JSON
+  - file: linked/DOCS
+  - file: linked/RDF
+  - file: linked/TURTLE
+
+  
+
+- caption: Using FOO
+  chapters:
+  - file: software/interfaces
+  
