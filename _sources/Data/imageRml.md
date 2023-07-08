@@ -31,14 +31,15 @@ df.tail(5)
 
 ```python
 g = Graph()
-ID = Namespace('foo_')
-owl = Namespace('http://www.w3.org/2002/07/owl#')
-sosa = Namespace('http://www.w3.org/ns/sosa/')
-foo = Namespace('http://www.ontology/ns/foo/1.1#')
-wgs84_pos = Namespace('http://www.w3.org/2003/01/geo/wgs84_pos#')
-time = Namespace('http://www.w3.org/2006/time#')
+ID = Namespace('Image_')
+SOSA = Namespace('http://www.w3.org/ns/sosa/')
+UNIT= Namespace('http://qudt.org/vocab/unit')
 schema = Namespace('http://schema.org/')
-XSD=Namespace('http://www.w3.org/2001/XMLSchema#')
+uri=URIRef('http://www.w3.org/2000/01/rdf-schema#')
+OBSPRO= Namespace('http://www.w3.org/ns/sosa/ObservableProperty/')
+TIME = Namespace('http://www.w3.org/2006/time#')
+VOID = Namespace('http://rdfs.org/ns/void#')
+XMLNS = Namespace('http://www.w3.org/XML/1998/namespace')
 ```
 
 
