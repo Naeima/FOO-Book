@@ -53,7 +53,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Vegetation and Habitat Data" href="veg.html" />
+    <link rel="next" title="Soil Sensor Data RML Rules" href="soilRml.html" />
     <link rel="prev" title="Animal GPS Collars Data" href="collar.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -160,6 +160,21 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Soil Sensor Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="soilRml.html">
+   Soil Sensor Data RML Rules
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="soilYarrrml.html">
+   Soil Sensor Data YARRRML mappings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="soilKG.html">
+   Soil Knowledge Graph Code
   </a>
  </li>
  <li class="toctree-l1">
@@ -426,16 +441,14 @@ Modelled datasets in this study can be found at (<a class="reference external" h
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
-<span class="n">ID</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;SoilPropertiesCeh_&#39;</span><span class="p">)</span>
-<span class="n">SOSA</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/ns/sosa/&#39;</span><span class="p">)</span>
-<span class="n">UNIT</span><span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://qudt.org/vocab/unit/&#39;</span><span class="p">)</span>
+<span class="n">ID</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;foo_&#39;</span><span class="p">)</span>
+<span class="n">owl</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2002/07/owl#&#39;</span><span class="p">)</span>
+<span class="n">sosa</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/ns/sosa/&#39;</span><span class="p">)</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.ontology/ns/foo/1.1#&#39;</span><span class="p">)</span>
+<span class="n">wgs84_pos</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2003/01/geo/wgs84_pos#&#39;</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2006/time#&#39;</span><span class="p">)</span>
 <span class="n">schema</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://schema.org/&#39;</span><span class="p">)</span>
-<span class="n">uri</span><span class="o">=</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2000/01/rdf-schema#&#39;</span><span class="p">)</span>
-<span class="n">OBSPRO</span><span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/ns/sosa/ObservableProperty/&#39;</span><span class="p">)</span>
-<span class="n">FEATURE</span><span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/ns/sosa/FeatureOfInterest/&#39;</span><span class="p">)</span>
-<span class="n">TIME</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2006/time#&#39;</span><span class="p">)</span>
-<span class="n">VOID</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://rdfs.org/ns/void#&#39;</span><span class="p">)</span>
-<span class="n">XMLNS</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/XML/1998/namespace&#39;</span><span class="p">)</span>
+<span class="n">XSD</span><span class="o">=</span><span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2001/XMLSchema#&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
@@ -548,10 +561,10 @@ Modelled datasets in this study can be found at (<a class="reference external" h
             <p class="prev-next-title">Animal GPS Collars Data</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="veg.html" title="next page">
+    <a class='right-next' id="next-link" href="soilRml.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Vegetation and Habitat Data</p>
+        <p class="prev-next-title">Soil Sensor Data RML Rules</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

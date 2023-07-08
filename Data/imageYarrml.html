@@ -53,8 +53,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="RDF Mapping Language Generic Code" href="RML.html" />
-    <link rel="prev" title="Vegetation and Habitat Data" href="veg.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -151,7 +149,7 @@ const thebe_selector_output = ".output, .cell_output"
   Data Sources
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="collar.html">
    Animal GPS Collars Data
@@ -182,8 +180,8 @@ const thebe_selector_output = ".output, .cell_output"
    Vegetation and Habitat Data
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="image.html">
    Camera Trap Images
   </a>
  </li>
@@ -333,7 +331,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/Naeima/Forest-Observatory-Ontology# Online location of your book/issues/new?title=Issue%20on%20page%20%2FData/image.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/Naeima/Forest-Observatory-Ontology# Online location of your book/issues/new?title=Issue%20on%20page%20%2FData/imageYarrml.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -361,7 +359,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/Data/image.md"
+        <a href="../_sources/Data/imageYarrml.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -490,14 +488,15 @@ Data are accessable on Github (<a class="reference external" href="https://githu
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
-<span class="n">ID</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;foo_&#39;</span><span class="p">)</span>
-<span class="n">owl</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2002/07/owl#&#39;</span><span class="p">)</span>
-<span class="n">sosa</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/ns/sosa/&#39;</span><span class="p">)</span>
-<span class="n">foo</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.ontology/ns/foo/1.1#&#39;</span><span class="p">)</span>
-<span class="n">wgs84_pos</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2003/01/geo/wgs84_pos#&#39;</span><span class="p">)</span>
-<span class="n">time</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2006/time#&#39;</span><span class="p">)</span>
+<span class="n">ID</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;Image_&#39;</span><span class="p">)</span>
+<span class="n">SOSA</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/ns/sosa/&#39;</span><span class="p">)</span>
+<span class="n">UNIT</span><span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://qudt.org/vocab/unit&#39;</span><span class="p">)</span>
 <span class="n">schema</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://schema.org/&#39;</span><span class="p">)</span>
-<span class="n">XSD</span><span class="o">=</span><span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2001/XMLSchema#&#39;</span><span class="p">)</span>
+<span class="n">uri</span><span class="o">=</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2000/01/rdf-schema#&#39;</span><span class="p">)</span>
+<span class="n">OBSPRO</span><span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/ns/sosa/ObservableProperty/&#39;</span><span class="p">)</span>
+<span class="n">TIME</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2006/time#&#39;</span><span class="p">)</span>
+<span class="n">VOID</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://rdfs.org/ns/void#&#39;</span><span class="p">)</span>
+<span class="n">XMLNS</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/XML/1998/namespace&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
@@ -579,20 +578,6 @@ Data are accessable on Github (<a class="reference external" href="https://githu
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="veg.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Vegetation and Habitat Data</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="RML.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">RDF Mapping Language Generic Code</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             </footer>
         </div>
