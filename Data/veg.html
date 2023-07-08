@@ -451,16 +451,14 @@ Further data can be found at <a class="reference external" href="https://github.
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
-<span class="n">ID</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;lianas_&#39;</span><span class="p">)</span>
-<span class="n">SOSA</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/ns/sosa/&#39;</span><span class="p">)</span>
-<span class="n">UNIT</span><span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://qudt.org/vocab/unit/&#39;</span><span class="p">)</span>
+<span class="n">ID</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;foo_&#39;</span><span class="p">)</span>
+<span class="n">owl</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2002/07/owl#&#39;</span><span class="p">)</span>
+<span class="n">sosa</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/ns/sosa/&#39;</span><span class="p">)</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.ontology/ns/foo/1.1#&#39;</span><span class="p">)</span>
+<span class="n">wgs84_pos</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2003/01/geo/wgs84_pos#&#39;</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2006/time#&#39;</span><span class="p">)</span>
 <span class="n">schema</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://schema.org/&#39;</span><span class="p">)</span>
-<span class="n">uri</span><span class="o">=</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2000/01/rdf-schema#&#39;</span><span class="p">)</span>
-<span class="n">OBSPRO</span><span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/ns/sosa/ObservableProperty/&#39;</span><span class="p">)</span>
-<span class="n">FEATURE</span><span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/ns/sosa/FeatureOfInterest/&#39;</span><span class="p">)</span>
-<span class="n">TIME</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2006/time#&#39;</span><span class="p">)</span>
-<span class="n">VOID</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://rdfs.org/ns/void#&#39;</span><span class="p">)</span>
-<span class="n">XMLNS</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/XML/1998/namespace&#39;</span><span class="p">)</span>
+<span class="n">XSD</span><span class="o">=</span><span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2001/XMLSchema#&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
