@@ -2,6 +2,7 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: Forest Observatory Ontology (FOO)
+        https://w3id.org/def/foo
 author: Naeima Hamed
 logo: logo.png
 
