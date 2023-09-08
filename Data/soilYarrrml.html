@@ -428,7 +428,7 @@ title="Print to PDF"
 <li><p>YARRRML genertaed using Matey (<a class="reference external" href="https://rml.io/yarrrml/matey/">https://rml.io/yarrrml/matey/</a>)</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>prefixes:
- foo: &quot;http://www.ontology/ns/foo/1.1#/&quot;
+ foo: &quot;http://w3id.org/def/foo#&quot;
  rdf: &quot;http://www.w3.org/1999/02/22-rdf-syntax-ns#&quot;
  xsd: &quot;http://www.w3.org/2001/XMLSchema#&quot;
  sosa: &quot;http://www.w3.org/ns/sosa/&quot;
@@ -439,7 +439,7 @@ mappings:
   Observation:
     sources:
       - [&#39;soil.csv~csv&#39;]
-    s: http://www.ontology/ns/foo/1.1#/$(Identifier)
+    s: http://w3id.org/def/foo#$(Identifier)
     po:
       - [a, sosa:Observation]
       - [foo:Site, $(Site)]
