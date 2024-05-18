@@ -46,3 +46,8 @@ sphinx:
 # Add a Launch on Binder button
 launch_buttons:
   binderhub_url: "https://mybinder.org"  
+
+# _config.yml
+html:
+  extra_footer: "_includes/chatbot.html"
+
