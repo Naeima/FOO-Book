@@ -1,7 +1,7 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Forest Observatory Ontology (FOO) https://w3id.org/def/foo
+title: Forest Observatory Ontology (FOO)
 author: Naeima Hamed
 logo: logo.png
 
@@ -42,6 +42,6 @@ sphinx:
     html_js_files:
     - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
 
-# Add a Launch on Binder button
-launch_buttons:
-  binderhub_url: "https://mybinder.org"  
+# _config.yml
+html:
+  extra_footer: "_includes/chatbot.html"
