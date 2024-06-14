@@ -9,8 +9,7 @@ To make  FOO findable on the web in different interoperable formats after publis
 
 
 # Github
--  https://naeima.github.io/Forest-Observatory-Ontology
-
+-  https://naeima.github.io/foo_html/index.ttl
 ![FOO Github](/img/publication.png)
 
 # Bioportal

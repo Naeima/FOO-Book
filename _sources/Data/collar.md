@@ -1,5 +1,5 @@
 
-# Animal GPS Collars Data
+# Elephant GPS Collars Data
 
 
 The Danau Girang Field Centre (DGFC) https://www.dgfc.life/home/ provided us with the collars data for elephants. Collars weighing approximately 14 kg each were officially placed around the elephants' necks to record numerous metrics  every two hours, including time, geolocation, and temperature.
@@ -9,101 +9,114 @@ In this study, we modelled twenty-two adult Asian elephants (Elephas maximus), f
 
 
 
-
-
-# #GPS Collar RDF Transformation Pipeline 
-
-
 ```python
-import pandas as pd #for handling csv and csv contents
-from rdflib import Graph, Literal, RDF, URIRef, Namespace #basic RDF handling
-from rdflib.namespace import FOAF , XSD, SSN, SOSA #most common namespaces
-import urllib.parse #for parsing strings to URI's
-import matplotlib.pyplot as plt
-import plotly.graph_objects as go
-import plotly.express as px
-import stardog
-```
+!pip install rdflib
 
-```python
-df = pd.read_csv('Jasmin.csv')
-```
+from google.colab import files
+import pandas as pd
+import csv
+from rdflib import Graph, Namespace, URIRef, Literal
+from rdflib.namespace import RDF, XSD
 
+# Prompt for file upload
+uploaded = files.upload()
 
+# Read the uploaded CSV file into a pandas DataFrame
+for filename in uploaded.keys():
+    print('User uploaded file "{name}" with length {length} bytes'.format(
+        name=filename, length=len(uploaded[filename])))
+    df = pd.read_csv(filename)
 
-```python
-df['Altitude']= pd.to_numeric(df['Altitude'],errors='coerce')
-df['Altitude'].mean().round(6)
-```
+# GPS collar
+import csv
+from rdflib import Graph, Namespace, URIRef, Literal
+from rdflib.namespace import RDF, XSD
 
+# Define namespaces
+FOO = Namespace("https://w3id.org/def/foo#")
+SOSA = Namespace("http://www.w3.org/ns/sosa/")
+GEO = Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
 
-```python
+# Create a new graph
 g = Graph()
-ID = Namespace('DGFC_')
-SOSA = Namespace('http://www.w3.org/ns/sosa/')
-lat = Namespace('http://www.w3.org/2003/01/geo/wgs84_pos#')
-long =Namespace('http://www.w3.org/2003/01/geo/wgs84_pos#')
-alt = Namespace('http://www.w3.org/2003/01/geo/wgs84_pos#')
-UNIT= Namespace('http://qudt.org/vocab/unit')
-schema = Namespace('http://schema.org/')
-uri=URIRef('http://www.w3.org/2000/01/rdf-schema#')
-OBSPRO= Namespace('http://www.w3.org/ns/sosa/ObservableProperty/')
-TIME = Namespace('http://www.w3.org/2006/time#')
-VOID = Namespace('http://rdfs.org/ns/void#')
-XMLNS = Namespace('http://www.w3.org/XML/1998/namespace')
-```
 
+# Bind namespaces
+g.bind("foo", FOO)
+g.bind("sosa", SOSA)
+g.bind("geo", GEO)
 
-```python
-for index, row in df.iterrows():
-    g.add((URIRef(ID+row['ID']), RDF.type, SOSA.Observation))
-    
-    g.add((URIRef(ID+row['ID']), SOSA.Observation, Literal(row['ID'], datatype=XSD.string)))
-    
-    g.add((URIRef(ID+row['ID']), URIRef(schema+'DGFC/elephant#Jasmin'), Literal(row['ID'], datatype=XSD.string) ))  
-    
-    g.add((URIRef(ID+row['ID']), TIME.localDate, Literal(row['LocalDate'], datatype=XSD.date)))
+# Path to your CSV file
+csv_file_path = "Jasmin.csv"  # Adjust the path accordingly
 
-    
-    g.add((URIRef(ID+row['ID']), TIME.localTime, Literal(row['LocalTime'], datatype=XSD.time)))
+# Read and process data
+with open(csv_file_path, newline='', encoding='utf-8-sig') as csvfile:
+    reader = csv.DictReader(csvfile, delimiter=',')
 
-    
-    g.add((URIRef(ID+row['ID']), TIME.gMTDate, Literal(row['GMTDate'], datatype=XSD.date)))
+    # Print headers for debugging
+    print("Headers:", reader.fieldnames)
 
-    
-    g.add((URIRef(ID+row['ID']), TIME.gMTTime, Literal(row['GMTTime'], datatype=XSD.time)))
+    for row in reader:
+        identifier = row.get('ID', '').strip()
+        local_date = row.get('LocalDate', '').strip()
+        local_time = row.get('LocalTime', '').strip()
+        gmt_date = row.get('GMTDate', '').strip()
+        gmt_time = row.get('GMTTime', '').strip()
+        lat = row.get('lat', '').strip()
+        long = row.get('long', '').strip()
+        temperature = row.get('Temperature', '').strip()
+        speed = row.get('Speed', '').strip()
+        direction = row.get('Direction', '').strip()
+        altitude = row.get('Altitude', '').strip()
+        cov = row.get('Cov', '').strip()
+        hdop = row.get('HDOP', '').strip()
+        distance = row.get('Distance', '').strip()
+        count = row.get('Count', '').strip()
 
-  
-    g.add((URIRef(ID+row['ID']), lat.lat, Literal(row['lat'], datatype=XSD.float)))
+        # Create sensor URI
+        sensor = URIRef(f"https://w3id.org/def/foo#{identifier}")
+        g.add((sensor, RDF.type, FOO.Jasmin))
+        g.add((sensor, FOO.ID, Literal(identifier, datatype=XSD.string)))
+        g.add((sensor, FOO.hasFeatureOfInterest, FOO.ElephasMaximus))
 
-    g.add((URIRef(ID+row['ID']), long.long, Literal(row['long'], datatype=XSD.float)))
-    
-    g.add((URIRef(ID+row['ID']), OBSPRO.Temperature, Literal(row['Temperature'], datatype=XSD.double)))
-   
-    
-    g.add((URIRef(ID+row['ID']), OBSPRO.Speed, Literal(row['Speed'], datatype=XSD.float)))
-     
-    g.add((URIRef(ID+row['ID']), alt.alt, Literal(row['Altitude'], datatype=XSD.float)))
-   
+        # Create observation URI
+        observation = URIRef(f"https://w3id.org/def/foo#{identifier}")
+        g.add((observation, RDF.type, FOO.Observation))
+        g.add((observation, FOO.madeBySensor, sensor))  # Link sensor to observation
 
-    g.add((URIRef(ID+row['ID']), OBSPRO.Direction, Literal(row['Direction'], datatype=XSD.float)))
-    g.add((URIRef(ID+row['ID']), OBSPRO.Distance, Literal(row['Distance'], datatype=XSD.float)))
+        # Add observation properties
+        g.add((observation, FOO.LocalDate, Literal(local_date, datatype=XSD.date)))
+        g.add((observation, FOO.LocalTime, Literal(local_time, datatype=XSD.time)))
+        g.add((observation, FOO.GMTDate, Literal(gmt_date, datatype=XSD.date)))
+        g.add((observation, FOO.GMTTime, Literal(gmt_time, datatype=XSD.time)))
+        g.add((observation, FOO.Latitude, Literal(lat, datatype=XSD.double)))
+        g.add((observation, FOO.Longitude, Literal(long, datatype=XSD.double)))
 
-    g.add((URIRef(ID+row['ID']), OBSPRO.HDOP, Literal(row['HDOP'], datatype=XSD.integer) ))
-    g.add((URIRef(ID+row['ID']), OBSPRO.Cov, Literal(row['Cov'], datatype=XSD.integer) ))
-    g.add((URIRef(ID+row['ID']), OBSPRO.Count, Literal(row['Count'], datatype=XSD.integer) ))
-```
+        # Add observable properties if available
+        if temperature:
+            g.add((observation, FOO.Temperature, Literal(temperature, datatype=XSD.double)))
+        if speed:
+            g.add((observation, FOO.Speed, Literal(speed, datatype=XSD.double)))
+        if direction:
+            g.add((observation, FOO.Direction, Literal(direction, datatype=XSD.integer)))
+        if altitude:
+            g.add((observation, FOO.Altitude, Literal(altitude, datatype=XSD.string)))
+        if cov:
+            g.add((observation, FOO.Cov, Literal(cov, datatype=XSD.double)))
+        if hdop:
+            g.add((observation, FOO.HDOP, Literal(hdop, datatype=XSD.double)))
+        if distance:
+            g.add((observation, FOO.Distance, Literal(distance, datatype=XSD.double)))
+        if count:
+            g.add((observation, FOO.Count, Literal(count, datatype=XSD.integer)))
 
+# Serialize the graph to a file
+output_file = "sensor_knowledge_graph.ttl"
+g.serialize(destination=output_file, format="turtle")
 
-```python
-# print(g.serialize(format='turtle')).head(10)
-```
+print(f"Knowledge graph has been serialized to {output_file}")
 
-
-```python
-# saving RDF graph to disk
-g.serialize("Jasmin.rdf", format="ttl")
-```
+# Download the file
+files.download(output_file)
 
 
 ```python
@@ -127,5 +140,3 @@ with stardog.Admin(**conn_details) as admin:
 
  conn.commit()
 ```
-
-

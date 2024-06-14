@@ -10,99 +10,97 @@ Further data can be found at https://github.com/Naeima/Forest-Observatory-Ontolo
 
 
 ```python
-from rdflib import Graph, Literal, RDF, URIRef, Namespace 
-from rdflib.namespace import FOAF , XSD, SSN, SOSA 
-import urllib.parse
-import pandas as pd 
-import matplotlib.pylab as plt
-from matplotlib import pyplot
-```
 
+!pip install rdflib
 
-```python
-df = pd.read_csv('lianas.csv')
-```
+from google.colab import files
+import pandas as pd
+import csv
+from rdflib import Graph, Namespace, URIRef, Literal
+from rdflib.namespace import RDF, XSD
 
+# Prompt for file upload
+uploaded = files.upload()
 
-```python
-df['ID1'] = df.index + 1
-```
+# Read the uploaded CSV file into a pandas DataFrame
+for filename in uploaded.keys():
+    print('User uploaded file "{name}" with length {length} bytes'.format(
+        name=filename, length=len(uploaded[filename])))
+    df = pd.read_csv(filename)
 
+# Define namespaces
+FOO = Namespace("https://w3id.org/def/foo#")
+SOSA = Namespace("http://www.w3.org/ns/sosa/")
+GEO = Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
 
-```python
-df.head(5)
-```
-
-
-```python
-#creating a unique ID 
-df['ID'] ='lianas' + df['ID1'].astype(str)
-```
-
-
-```python
-df.tail(10)
-```
-
-
-```python
+# Create a new graph
 g = Graph()
-ID = Namespace('lianas_')
-SOSA = Namespace('http://www.w3.org/ns/sosa/')
-UNIT= Namespace('http://qudt.org/vocab/unit/')
-schema = Namespace('http://schema.org/')
-uri=URIRef('http://www.w3.org/2000/01/rdf-schema#')
-OBSPRO= Namespace('http://www.w3.org/ns/sosa/ObservableProperty/')
-FEATURE= Namespace('http://www.w3.org/ns/sosa/FeatureOfInterest/')
-TIME = Namespace('http://www.w3.org/2006/time#')
-VOID = Namespace('http://rdfs.org/ns/void#')
-XMLNS = Namespace('http://www.w3.org/XML/1998/namespace')
-```
 
+# Bind namespaces
+g.bind("foo", FOO)
+g.bind("sosa", SOSA)
+g.bind("geo", GEO)
 
-```python
+# Process data from DataFrame
 for index, row in df.iterrows():
-    g.add((URIRef(ID+row['ID']), RDF.type, SOSA.Observation))
-    
-    g.add((URIRef(ID+row['ID']), SOSA.Observation, Literal(row['ID'], datatype=XSD.string)))
-    
-    g.add((URIRef(ID+row['ID']), URIRef(schema+'lianas'), Literal(row['ID'], datatype=XSD.string) ))  
-    
-    g.add((URIRef(ID+row['ID']), schema.Site_name, Literal(row['Site_name'], datatype=XSD.string)))
-  
-    g.add((URIRef(ID+row['ID']), FEATURE.Plot_no, Literal(row['Plot_no'], datatype=XSD.integer)))
+    site_name = row.get('Site_name', '').strip()
+    plot_no = row.get('Plot_no', '')
+    site_plot_code = row.get('Site_plot_code', '')
+    date = row.get('Date', '').strip()
+    tree_individual_no = row.get('Tree_individual_no', '')
+    tree_id = row.get('Tree_ID', '').strip()
+    tree_dbh_cm = row.get('Tree_dbh_cm', '')
+    tree_height_m = row.get('Tree_height_m', '')
+    tree_n_lianas = row.get('Tree_N_lianas', '')
+    liana_dbh_cm = row.get('Liana_dbh_cm', '')
+    tree_notes = row.get('Tree_notes', '')
+    subplot_radius_m = row.get('Subplot_radius_m', '')
 
-    g.add((URIRef(ID+row['ID']), schema.Site_plot_code, Literal(row['Site_plot_code'], datatype=XSD.string)))
-    
-    g.add((URIRef(ID+row['ID']), TIME.Date, Literal(row['Date'], datatype=XSD.date)))
-    
-    g.add((URIRef(ID+row['ID']), OBSPRO.Tree_individual_no, Literal(row['Tree_individual_no'], datatype=XSD.integer)))
-    
-    g.add((URIRef(ID+row['ID']), schema.Tree_ID	, Literal(row['Tree_ID'], datatype=XSD.string)))
-    
-    g.add((URIRef(ID+row['ID']), OBSPRO.Tree_dbh_cm, Literal(row['Tree_dbh_cm'], datatype=XSD.float)))
-    
-    g.add((URIRef(ID+row['ID']), OBSPRO.Tree_height_m, Literal(row['Tree_height_m'], datatype=XSD.float)))
-    
-    g.add((URIRef(ID+row['ID']), OBSPRO.Liana_dbh_cm, Literal(row['Liana_dbh_cm'], datatype=XSD.integer)))
+    # Create tree observation URI
+    tree_observation = URIRef(f"https://w3id.org/def/foo#lianasObservation{tree_individual_no}")
 
-    g.add((URIRef(ID+row['ID']), OBSPRO.Liana_dbh_cm, Literal(row['Liana_dbh_cm'], datatype=XSD.float)))
-    
-    g.add((URIRef(ID+row['ID']), schema.Tree_notes, Literal(row['Tree_notes'], datatype=XSD.string)))
+    g.add((tree_observation, RDF.type, FOO.Observation))
+    g.add((tree_observation, FOO.SiteName, Literal(site_name, datatype=XSD.string)))
+    g.add((tree_observation, FOO.PlotNo, Literal(plot_no, datatype=XSD.integer)))
+    g.add((tree_observation, FOO.SitePlotCode, Literal(site_plot_code, datatype=XSD.string)))
+    g.add((tree_observation, FOO.Date, Literal(date, datatype=XSD.date)))
+    g.add((tree_observation, FOO.TreeIndividualNo, Literal(tree_individual_no, datatype=XSD.integer)))
+    g.add((tree_observation, FOO.TreeID, Literal(tree_id, datatype=XSD.string)))
+    g.add((tree_observation, FOO.TreeDbhCm, Literal(tree_dbh_cm, datatype=XSD.double)))
+    g.add((tree_observation, FOO.TreeHeightM, Literal(tree_height_m, datatype=XSD.double)))
+    g.add((tree_observation, FOO.TreeNLianas, Literal(tree_n_lianas, datatype=XSD.integer)))
+    g.add((tree_observation, FOO.LianaDbhCm, Literal(liana_dbh_cm, datatype=XSD.double)))
+    g.add((tree_observation, FOO.TreeNotes, Literal(tree_notes, datatype=XSD.string)))
+    g.add((tree_observation, FOO.SubplotRadiusM, Literal(subplot_radius_m, datatype=XSD.double)))
 
-    g.add((URIRef(ID+row['ID']), OBSPRO.Subplot_radius_m, Literal(row['Subplot_radius_m'], datatype=XSD.integer) ))
-```
+    # Create lianas sensor URI
+    lianas_sensor = URIRef(f"https://w3id.org/def/foo#lianas{tree_individual_no}")
+    g.add((lianas_sensor, RDF.type, FOO.lianas))
+    g.add((lianas_sensor, FOO.ID, Literal(tree_individual_no, datatype=XSD.string)))
+    g.add((lianas_sensor, FOO.hasFeatureOfInterest, FOO.Lianas))
+    g.add((tree_observation, FOO.madeBySensor, lianas_sensor))
 
+# Serialize the graph to a file
+output_file = "lianas_knowledge_graph.ttl"
+g.serialize(destination=output_file, format="turtle")
 
-```python
-# print(g.serialize(format='turtle').decode('UTF-8'))
-```
+print(f"Knowledge graph has been serialized to {output_file}")
 
+# Download the file
+files.download(output_file)
 
-```python
-# saving RDF graph to disk
-g.serialize('lianas.rdf', format='ttl')
-```
+from rdflib import Graph
+
+# Load the TTL file
+file_path = 'path/to/your/fooKG.ttl'  # Replace with the actual path to your TTL file
+g = Graph()
+g.parse(file_path, format='ttl')
+
+# Serialize the graph to an HTML file
+html_output_file = 'path/to/your/fooKG.html'  # Replace with the desired path for the HTML output
+g.serialize(destination=html_output_file, format='html')
+
+print(f"RDF graph has been converted to HTML and saved to {html_output_file}")
 
 
 ```python
