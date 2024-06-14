@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Animal GPS Collars Data &#8212; Forest Observatory Ontology (FOO)</title>
+    <title>Elephant GPS Collars Data &#8212; Forest Observatory Ontology (FOO)</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -202,8 +202,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Sources</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Animal GPS Collars Data</a></li>
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Elephant GPS Collars Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="soil.html">Soil Sensor Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="veg.html">Vegetation and Habitat Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="image.html">Camera Trap Images</a></li>
@@ -347,9 +346,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -360,21 +357,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Animal GPS Collars Data</h1>
+    <h1>Elephant GPS Collars Data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Animal GPS Collars Data</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gps-collar-rdf-transformation-pipeline">#GPS Collar RDF Transformation Pipeline</a></li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -384,93 +371,122 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="animal-gps-collars-data">
-<h1>Animal GPS Collars Data<a class="headerlink" href="#animal-gps-collars-data" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="elephant-gps-collars-data">
+<h1>Elephant GPS Collars Data<a class="headerlink" href="#elephant-gps-collars-data" title="Link to this heading">#</a></h1>
 <p>The Danau Girang Field Centre (DGFC) <a class="reference external" href="https://www.dgfc.life/home/">https://www.dgfc.life/home/</a> provided us with the collars data for elephants. Collars weighing approximately 14 kg each were officially placed around the elephants’ necks to record numerous metrics  every two hours, including time, geolocation, and temperature.
 In this study, we modelled twenty-two adult Asian elephants (Elephas maximus), fourteen females and eight males. The collars were created by Africa Wildlife Tracking and fitted ethically by a team of researchers, trackers, and a wildlife vet. Each collar had a Global Positioning System (GPS) receiver and a Very High Frequency (VHF) transmitter. At predetermined intervals, the GPS uploaded each individual’s geographical location information to the Globaltrack server, which could be officially obtained from the Globaltrack website (<a class="reference external" href="http://www.globaltrack.com">http://www.globaltrack.com</a>). The built-in VHF transmitter aided in retrieving collars that had come off naturally or in locating an individual when additional monitoring was required. The observations in those datasets cover the period range between 2012 to 2018. We refrain from publishing the datasets used in this study because they could be misused to locate an endangered species at risk of poaching.</p>
 <p><img alt="Animal GPS Collars Data" src="../_images/collar.png" /></p>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="gps-collar-rdf-transformation-pipeline">
-<h1>#GPS Collar RDF Transformation Pipeline<a class="headerlink" href="#gps-collar-rdf-transformation-pipeline" title="Link to this heading">#</a></h1>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span> <span class="c1">#for handling csv and csv contents</span>
-<span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">RDF</span><span class="p">,</span> <span class="n">URIRef</span><span class="p">,</span> <span class="n">Namespace</span> <span class="c1">#basic RDF handling</span>
-<span class="kn">from</span> <span class="nn">rdflib.namespace</span> <span class="kn">import</span> <span class="n">FOAF</span> <span class="p">,</span> <span class="n">XSD</span><span class="p">,</span> <span class="n">SSN</span><span class="p">,</span> <span class="n">SOSA</span> <span class="c1">#most common namespaces</span>
-<span class="kn">import</span> <span class="nn">urllib.parse</span> <span class="c1">#for parsing strings to URI&#39;s</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
-<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
-<span class="kn">import</span> <span class="nn">stardog</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Jasmin.csv&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Altitude&#39;</span><span class="p">]</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Altitude&#39;</span><span class="p">],</span><span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Altitude&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
-<span class="n">ID</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;DGFC_&#39;</span><span class="p">)</span>
-<span class="n">SOSA</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/ns/sosa/&#39;</span><span class="p">)</span>
-<span class="n">lat</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2003/01/geo/wgs84_pos#&#39;</span><span class="p">)</span>
-<span class="n">long</span> <span class="o">=</span><span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2003/01/geo/wgs84_pos#&#39;</span><span class="p">)</span>
-<span class="n">alt</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2003/01/geo/wgs84_pos#&#39;</span><span class="p">)</span>
-<span class="n">UNIT</span><span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://qudt.org/vocab/unit&#39;</span><span class="p">)</span>
-<span class="n">schema</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://schema.org/&#39;</span><span class="p">)</span>
-<span class="n">uri</span><span class="o">=</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2000/01/rdf-schema#&#39;</span><span class="p">)</span>
-<span class="n">OBSPRO</span><span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/ns/sosa/ObservableProperty/&#39;</span><span class="p">)</span>
-<span class="n">TIME</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2006/time#&#39;</span><span class="p">)</span>
-<span class="n">VOID</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://rdfs.org/ns/void#&#39;</span><span class="p">)</span>
-<span class="n">XMLNS</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/XML/1998/namespace&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">RDF</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">SOSA</span><span class="o">.</span><span class="n">Observation</span><span class="p">))</span>
-    
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">SOSA</span><span class="o">.</span><span class="n">Observation</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">string</span><span class="p">)))</span>
-    
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">URIRef</span><span class="p">(</span><span class="n">schema</span><span class="o">+</span><span class="s1">&#39;DGFC/elephant#Jasmin&#39;</span><span class="p">),</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">string</span><span class="p">)</span> <span class="p">))</span>  
-    
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">TIME</span><span class="o">.</span><span class="n">localDate</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;LocalDate&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">date</span><span class="p">)))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">rdflib</span>
 
-    
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">TIME</span><span class="o">.</span><span class="n">localTime</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;LocalTime&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">time</span><span class="p">)))</span>
+<span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">files</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">Namespace</span><span class="p">,</span> <span class="n">URIRef</span><span class="p">,</span> <span class="n">Literal</span>
+<span class="kn">from</span> <span class="nn">rdflib.namespace</span> <span class="kn">import</span> <span class="n">RDF</span><span class="p">,</span> <span class="n">XSD</span>
 
-    
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">TIME</span><span class="o">.</span><span class="n">gMTDate</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;GMTDate&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">date</span><span class="p">)))</span>
+<span class="c1"># Prompt for file upload</span>
+<span class="n">uploaded</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
 
-    
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">TIME</span><span class="o">.</span><span class="n">gMTTime</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;GMTTime&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">time</span><span class="p">)))</span>
+<span class="c1"># Read the uploaded CSV file into a pandas DataFrame</span>
+<span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">uploaded</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;User uploaded file &quot;</span><span class="si">{name}</span><span class="s1">&quot; with length </span><span class="si">{length}</span><span class="s1"> bytes&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">uploaded</span><span class="p">[</span><span class="n">filename</span><span class="p">])))</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 
-  
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">lat</span><span class="o">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">float</span><span class="p">)))</span>
+<span class="c1"># GPS collar</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">Graph</span><span class="p">,</span> <span class="n">Namespace</span><span class="p">,</span> <span class="n">URIRef</span><span class="p">,</span> <span class="n">Literal</span>
+<span class="kn">from</span> <span class="nn">rdflib.namespace</span> <span class="kn">import</span> <span class="n">RDF</span><span class="p">,</span> <span class="n">XSD</span>
 
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">long</span><span class="o">.</span><span class="n">long</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;long&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">float</span><span class="p">)))</span>
-    
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">OBSPRO</span><span class="o">.</span><span class="n">Temperature</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Temperature&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">double</span><span class="p">)))</span>
-   
-    
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">OBSPRO</span><span class="o">.</span><span class="n">Speed</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Speed&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">float</span><span class="p">)))</span>
-     
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">alt</span><span class="o">.</span><span class="n">alt</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Altitude&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">float</span><span class="p">)))</span>
-   
+<span class="c1"># Define namespaces</span>
+<span class="n">FOO</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s2">&quot;https://w3id.org/def/foo#&quot;</span><span class="p">)</span>
+<span class="n">SOSA</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s2">&quot;http://www.w3.org/ns/sosa/&quot;</span><span class="p">)</span>
+<span class="n">GEO</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span><span class="s2">&quot;http://www.w3.org/2003/01/geo/wgs84_pos#&quot;</span><span class="p">)</span>
 
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">OBSPRO</span><span class="o">.</span><span class="n">Direction</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Direction&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">float</span><span class="p">)))</span>
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">OBSPRO</span><span class="o">.</span><span class="n">Distance</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Distance&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">float</span><span class="p">)))</span>
+<span class="c1"># Create a new graph</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
 
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">OBSPRO</span><span class="o">.</span><span class="n">HDOP</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;HDOP&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">integer</span><span class="p">)</span> <span class="p">))</span>
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">OBSPRO</span><span class="o">.</span><span class="n">Cov</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Cov&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">integer</span><span class="p">)</span> <span class="p">))</span>
-    <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">URIRef</span><span class="p">(</span><span class="n">ID</span><span class="o">+</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]),</span> <span class="n">OBSPRO</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;Count&#39;</span><span class="p">],</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">integer</span><span class="p">)</span> <span class="p">))</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># print(g.serialize(format=&#39;turtle&#39;)).head(10)</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># saving RDF graph to disk</span>
-<span class="n">g</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="s2">&quot;Jasmin.rdf&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;ttl&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># adding serialized data to stardog </span>
+<span class="c1"># Bind namespaces</span>
+<span class="n">g</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="n">FOO</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;sosa&quot;</span><span class="p">,</span> <span class="n">SOSA</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;geo&quot;</span><span class="p">,</span> <span class="n">GEO</span><span class="p">)</span>
+
+<span class="c1"># Path to your CSV file</span>
+<span class="n">csv_file_path</span> <span class="o">=</span> <span class="s2">&quot;Jasmin.csv&quot;</span>  <span class="c1"># Adjust the path accordingly</span>
+
+<span class="c1"># Read and process data</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">csv_file_path</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8-sig&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictReader</span><span class="p">(</span><span class="n">csvfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Print headers for debugging</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Headers:&quot;</span><span class="p">,</span> <span class="n">reader</span><span class="o">.</span><span class="n">fieldnames</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
+        <span class="n">identifier</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">local_date</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;LocalDate&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">local_time</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;LocalTime&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">gmt_date</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;GMTDate&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">gmt_time</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;GMTTime&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">long</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;long&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">temperature</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">speed</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Speed&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">direction</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Direction&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">altitude</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Altitude&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">cov</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Cov&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">hdop</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;HDOP&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Distance&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="c1"># Create sensor URI</span>
+        <span class="n">sensor</span> <span class="o">=</span> <span class="n">URIRef</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://w3id.org/def/foo#</span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">sensor</span><span class="p">,</span> <span class="n">RDF</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">Jasmin</span><span class="p">))</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">sensor</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">identifier</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">string</span><span class="p">)))</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">sensor</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">hasFeatureOfInterest</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">ElephasMaximus</span><span class="p">))</span>
+
+        <span class="c1"># Create observation URI</span>
+        <span class="n">observation</span> <span class="o">=</span> <span class="n">URIRef</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;https://w3id.org/def/foo#</span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">RDF</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">Observation</span><span class="p">))</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">madeBySensor</span><span class="p">,</span> <span class="n">sensor</span><span class="p">))</span>  <span class="c1"># Link sensor to observation</span>
+
+        <span class="c1"># Add observation properties</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">LocalDate</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">local_date</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">date</span><span class="p">)))</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">LocalTime</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">local_time</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">time</span><span class="p">)))</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">GMTDate</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">gmt_date</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">date</span><span class="p">)))</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">GMTTime</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">gmt_time</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">time</span><span class="p">)))</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">Latitude</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">double</span><span class="p">)))</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">Longitude</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">long</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">double</span><span class="p">)))</span>
+
+        <span class="c1"># Add observable properties if available</span>
+        <span class="k">if</span> <span class="n">temperature</span><span class="p">:</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">Temperature</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">temperature</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">double</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">speed</span><span class="p">:</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">Speed</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">double</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">direction</span><span class="p">:</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">Direction</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">integer</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">altitude</span><span class="p">:</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">Altitude</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">altitude</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">string</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">cov</span><span class="p">:</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">Cov</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">cov</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">double</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">hdop</span><span class="p">:</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">HDOP</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">hdop</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">double</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">distance</span><span class="p">:</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">Distance</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">double</span><span class="p">)))</span>
+        <span class="k">if</span> <span class="n">count</span><span class="p">:</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">observation</span><span class="p">,</span> <span class="n">FOO</span><span class="o">.</span><span class="n">Count</span><span class="p">,</span> <span class="n">Literal</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">XSD</span><span class="o">.</span><span class="n">integer</span><span class="p">)))</span>
+
+<span class="c1"># Serialize the graph to a file</span>
+<span class="n">output_file</span> <span class="o">=</span> <span class="s2">&quot;sensor_knowledge_graph.ttl&quot;</span>
+<span class="n">g</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="n">destination</span><span class="o">=</span><span class="n">output_file</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;turtle&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Knowledge graph has been serialized to </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Download the file</span>
+<span class="n">files</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+
+
+<span class="err">```</span><span class="n">python</span>
+<span class="c1"># adding serialized data to stardog </span>
 
  <span class="n">conn_details</span> <span class="o">=</span> <span class="p">{</span>
  <span class="s1">&#39;endpoint&#39;</span><span class="p">:</span> <span class="s1">&#39;http://localhost:5820&#39;</span><span class="p">,</span>
@@ -548,22 +564,7 @@ In this study, we modelled twenty-two adult Asian elephants (Elephas maximus), f
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Animal GPS Collars Data</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gps-collar-rdf-transformation-pipeline">#GPS Collar RDF Transformation Pipeline</a></li>
-</ul>
-
-  </nav></div>
-
-</div></div>
+                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
