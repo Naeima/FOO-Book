@@ -8,7 +8,7 @@ With the ontology stakeholders, we built conceptual models (i.e., diagrams) and 
 FOO was encoded in Web Ontology Language (OWL), edited it with Protégé, 
 and pipeline (i.e., Python codes) were written to serialise the datasets that populated it.
 
-![FOO Conceptual Model](/img/FOOBook.png)
+![FOO Conceptual Model](/img/FOOBook2.png)
 
 
 
