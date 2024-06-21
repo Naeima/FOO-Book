@@ -46,9 +46,9 @@ Please follow the link below to chat with FOO.
 </head>
 <body>
     <div class="container">
-        <h1>Chat with Naeima</h1>
+        <h1>Chat with FOO</h1>
         <p>Click the button below to chat with Naeima:</p>
-        <a href="https://naeima.zapier.app/" target="_blank">Open Naeima Chatbot</a>
+        <a href="https://foodatastore.zapier.app/" target="_blank">Open Forest Observatory Chatbot</a>
     </div>
 </body>
 </html>
