@@ -1,5 +1,6 @@
 # FOO Chatbot
 
+Please follow the link below to chat with FOO.
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,5 +52,6 @@
     </div>
 </body>
 </html>
+
 
 ```
