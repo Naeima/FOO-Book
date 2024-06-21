@@ -1,19 +1,26 @@
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix pos: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
-@prefix wo: <https://www.bbc.co.uk/ontologies/wildlife-ontology#> .
-@prefix foo: <https://w3id.org/def/foo#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix dc: <http://purl.org/dc/elements/1.1/> .
-@prefix schema: <https://schema.org/> .
-@prefix vann: <http://purl.org/vocab/vann/> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix cc: <http://creativecommons.org/ns#> .
-@prefix prov: <http://www.w3.org/ns/prov#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FOO Ontology</title>
+</head>
+<body>
+<pre>
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
+@prefix pos: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt; .
+@prefix wo: &lt;https://www.bbc.co.uk/ontologies/wildlife-ontology#Family/&gt; .
+@prefix foo: &lt;https://w3id.org/def/foo#&gt; .
+@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .
+@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .
+@prefix schema: &lt;https://schema.org/&gt; .
+@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .
+@prefix cc: &lt;http://creativecommons.org/ns#&gt; .
+@prefix prov:&lt;http://www.w3.org/ns/prov#&gt; .
+@prefix foaf: &lt;<http://xmlns.com/foaf/0.1/&gt .
 
 
 ### Ontology Declaration ###
@@ -967,7 +974,6 @@ foo:SoilObservation    rdf:type foo:Observation ;
                   foo:Silt "16.46"^^xsd:double ;
                   foo:Clay "62.88"^^xsd:double .
 
-
 ### Camera Trap Sensor Instance ###
 foo:CameraTrap rdf:type foo:Sensor ;
       foo:hasFeatureOfInterest foo:Image ;
@@ -1010,3 +1016,6 @@ foo:lianasObservation rdf:type foo:Observation ;
     foo:lianaDBH_cm 10 ;
     foo:treeNotes "" ;
     foo:subplotRadius_m 30 .
+</pre>
+</body>
+</html>
