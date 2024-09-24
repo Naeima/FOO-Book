@@ -31,9 +31,11 @@ The Web Ontology Language (OWL2) is used to implement FOO.
 - 10 Natural Language Statements (NLSs), see table 3.
 
 
+
 ![FOO ORSD1](/img/ORSD2.png)
 ![FOO ORSD2](/img/ORSD3.png)
 
+https://cf.sharepoint.com/:x:/r/teams/NaeimaHamedPhD09/Shared%20Documents/General/Thesis/Supplement%20Materials%20Checklist%20for%20PhD%20Thesis%20Submission/Forest%20Observatory/Forest%20Observatory%20Ontology%20Development%20Final.xlsx?d=w7d6d58f3c10a4ed38a8871cf5ce9359c&csf=1&web=1&e=ygaGRE
 
 ```{bibliography}
 ```
