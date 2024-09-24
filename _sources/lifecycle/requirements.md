@@ -22,14 +22,18 @@ The Web Ontology Language (OWL2) is used to implement FOO.
 - For reasoning, that is, infers new events from data.
 
 
-# Non-Functional Requirements
-- FOO must include IoT elements, such as sensors.
-- FOO must include wildlife concepts, such as Taxon Rank.
-- FOO must contain the relationship between the IoT and wildlife concepts.
-# Functional Requirements
-- 106 curated competency questions (CQs), see table 1 and 2.
-- 10 Natural Language Statements (NLSs), see table 3.
+# Functional Requirements:
 
+FOO must include IoT elements, such as sensors.
+FOO must include wildlife concepts, such as Taxon Rank.
+FOO must define relationships between IoT and wildlife concepts.
+The ontology should support 106 curated competency questions (CQs); see Table 1 and 2.
+
+# Non-Functional Requirements:
+
+FOO must be scalable to accommodate increasing amounts of wildlife and IoT data.
+FOO should be interoperable with existing wildlife data standards and systems.
+The ontology must perform efficiently when reasoning over large datasets.
 
 
 ![FOO ORSD1](/img/ORSD2.png)
