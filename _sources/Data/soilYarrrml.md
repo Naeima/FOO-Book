@@ -4,11 +4,9 @@
 
  - YARRRML genertaed using Matey (https://rml.io/yarrrml/matey/#)
 
-
-
 ```python
 prefixes:
- foo: "http://www.ontology/ns/foo/1.1#/"
+ foo: "http://w3id.org/def/foo#"
  rdf: "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
  xsd: "http://www.w3.org/2001/XMLSchema#"
  sosa: "http://www.w3.org/ns/sosa/"
@@ -19,22 +17,22 @@ mappings:
   Observation:
     sources:
       - ['soil.csv~csv']
-    s: http://www.ontology/ns/foo/1.1#/$(Identifier)
+    s: http://w3id.org/def/foo#$(Identifier)
     po:
-      - [a, sosa:Observation]
-      - [foo:Site, $(Site)]
-      - [foo:Land_Use, $(Land_Use)]
-      - [foo:Plot_Name, $(Plot_Name)]
-      - [foo:Subplot, $(Subplot)]
-      - [foo:Horizon, $(Horizon)]
-      - [foo:Soil_pH, $(Soil_pH)]
-      - [foo:Total_C, $(Total_C)]
-      - [foo:Total_N, $(Total_N)]
-      - [foo:Total_P, $(Total_P)]
+      - [a, foo:Observation]
+      - [foo:ites, $(Site)]
+      - [foo:land_Use, $(Land_Use)]
+      - [foo:plot_Name, $(Plot_Name)]
+      - [foo:subplot, $(Subplot)]
+      - [foo:horizon, $(Horizon)]
+      - [foo:soil_pH, $(Soil_pH)]
+      - [foo:total_C, $(Total_C)]
+      - [foo:total_N, $(Total_N)]
+      - [foo:total_P, $(Total_P)]
       - [foo:inorganic_P, $(inorganic_P)]
-      - [foo:C:N, $(C:N)]
-      - [foo:Sand, $(Sand)]
-      - [foo:Silt, $(Silt)]
-      - [foo:Clay, $(Clay)]
+      - [foo:c:N, $(C:N)]
+      - [foo:sand, $(Sand)]
+      - [foo:silt, $(Silt)]
+      - [foo:clay, $(Clay)]
       
 ```
