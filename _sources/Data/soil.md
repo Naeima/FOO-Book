@@ -7,7 +7,23 @@ Modelled datasets in this study can be found at (https://github.com/Naeima/Fores
 ![Soil Sensor Data](/img/soil.png)
 
 ```python
+!pip install rdflib
 
+from google.colab import files
+import pandas as pd
+import csv
+from rdflib import Graph, Namespace, URIRef, Literal
+from rdflib.namespace import RDF, XSD
+
+
+# Prompt for file upload
+uploaded = files.upload()
+
+# Read the uploaded CSV file into a pandas DataFrame
+for filename in uploaded.keys():
+    print('User uploaded file "{name}" with length {length} bytes'.format(
+        name=filename, length=len(uploaded[filename])))
+    df = pd.read_csv(filename)
 import csv
 from rdflib import Graph, Namespace, URIRef, Literal
 from rdflib.namespace import RDF, XSD
@@ -31,10 +47,10 @@ csv_file_path = "Soil.csv"  # Adjust the path accordingly
 # Read and process data
 with open(csv_file_path, newline='') as csvfile:
     reader = csv.DictReader(csvfile, delimiter=',')
-    
+
     # Print headers for debugging
     print("Headers:", reader.fieldnames)
-    
+
     for row in reader:
         identifier = row.get('Identifier', '').strip()
         site = row.get('Site', '').strip()
@@ -52,40 +68,36 @@ with open(csv_file_path, newline='') as csvfile:
         silt = row.get('Silt', '').strip()
         clay = row.get('Clay', '').strip()
 
-        # Create soil sensor URI
-        sensor = URIRef(f"https://w3id.org/def/foo#{identifier}_Sensor")
-        g.add((sensor, RDF.type, FOO.SoilSensor))
-        g.add((sensor, FOO.ID, Literal(identifier, datatype=XSD.string)))
-        g.add((sensor, FOO.Site, Literal(site, datatype=XSD.string)))
-        g.add((sensor, FOO.LandUse, Literal(land_use, datatype=XSD.string)))
-        g.add((sensor, FOO.PlotName, Literal(plot_name, datatype=XSD.string)))
-        g.add((sensor, FOO.Subplot, Literal(subplot, datatype=XSD.string)))
-        g.add((sensor, FOO.Horizon, Literal(horizon, datatype=XSD.string)))
-
         # Create observation URI
-        observation = URIRef(f"https://w3id.org/def/foo#{identifier}_Observation")
-        g.add((observation, RDF.type, FOO.Observation))
-        g.add((sensor, FOO.hasObservation, observation))  # Link sensor to observation
+        observation = URIRef(f"https://w3id.org/def/foo#{identifier}")
+        g.add((observation, RDF.type, FOO.soilObservation))
+        g.add((observation, FOO.id, Literal(identifier, datatype=XSD.string)))
+        g.add((observation, FOO.site, Literal(site, datatype=XSD.string)))
+        g.add((observation, FOO.landUse, Literal(land_use, datatype=XSD.string)))
+        g.add((observation, FOO.plotName, Literal(plot_name, datatype=XSD.string)))
+        g.add((observation, FOO.subplot, Literal(subplot, datatype=XSD.string)))
+        g.add((observation, FOO.horizon, Literal(horizon, datatype=XSD.string)))
+        g.add((observation, FOO.madeBySensor, FOO.soilSensor))  # Link sensor to observation
 
         # Add observable properties
         if soil_ph:
-            g.add((observation, FOO.SoilPH, Literal(soil_ph, datatype=XSD.double)))
+            g.add((observation, FOO.soilPH, Literal(soil_ph, datatype=XSD.double)))
         if total_c:
-            g.add((observation, FOO.TotalC, Literal(total_c, datatype=XSD.double)))
+            g.add((observation, FOO.totalC, Literal(total_c, datatype=XSD.double)))
         if total_n:
-            g.add((observation, FOO.TotalN, Literal(total_n, datatype=XSD.double)))
+            g.add((observation, FOO.totalN, Literal(total_n, datatype=XSD.double)))
         if total_p:
-            g.add((observation, FOO.TotalP, Literal(total_p, datatype=XSD.double)))
+            g.add((observation, FOO.totalP, Literal(total_p, datatype=XSD.double)))
         if inorganic_p:
-            g.add((observation, FOO.InorganicP, Literal(inorganic_p, datatype=XSD.double)))
+            g.add((observation, FOO.inorganicP, Literal(inorganic_p, datatype=XSD.double)))
         if cn_ratio:
-            g.add((observation, FOO.CNRatio, Literal(cn_ratio, datatype=XSD.double)))
+            g.add((observation, FOO.cNRatio, Literal(cn_ratio, datatype=XSD.double)))
         if sand:
-            g.add((observation, FOO.Sand, Literal(sand, datatype=XSD.double)))
+            g.add((observation, FOO.sand, Literal(sand, datatype=XSD.double)))
         if silt:
-            g.add((observation, FOO.Silt, Literal(silt, datatype=XSD.double)))
+            g.add((observation, FOO.silt, Literal(silt, datatype=XSD.double)))
         if clay:
-            g.add((observation, FOO.Clay, Literal(clay, datatype=XSD.double)))
+            g.add((observation, FOO.clay, Literal(clay, datatype=XSD.double)))
 
 # Serialize the graph to a file
 output_file = "soil_knowledge_graph.ttl"
@@ -93,25 +105,11 @@ g.serialize(destination=output_file, format="turtle")
 
 print(f"Knowledge graph has been serialized to {output_file}")
 
+     
+Headers: ['Identifier', 'Site', 'Land_Use', 'Plot_Name', 'Subplot', 'Horizon', 'Soil_pH', 'Total_C', 'Total_N', 'Total_P', 'inorganic_P', 'C:N', 'Sand', 'Silt', 'Clay']
+Knowledge graph has been serialized to soil_knowledge_graph.ttl
 
-```python
-# adding serialized data to stardog 
-
-# conn_details = {
-#   'endpoint': 'http://localhost:5820',
-#   'username': 'admin',
-#   'password': 'admin'
-# }
-# with stardog.Admin(**conn_details) as admin:
-#     Soil = admin.new_database('Soil')
-
-# conn = stardog.Connection('Soil', **conn_details)
-
-# conn.begin()
-
-# conn.add(
-#     stardog.content.File('Soil.rdf', stardog.content_types.TURTLE),
-# )
-
-# conn.commit()
+# Download the file
+files.download(output_file)
+     
 ```
