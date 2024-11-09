@@ -1,9 +1,10 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Forest Observatory Ontology (FOO)
-author: Naeima Hamed
+title: Forest Observatory Ontology (FOO) 
+author: Naeima Hamed, Professor Omer Rana, Dr Pablo Orozco-terWengel, Professor Benoit Goossens, Dr Charith Perera 
 logo: logo.png
+Chatbot: https://foodatastore.zapier.app
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -21,15 +22,16 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/Naeima/FOO-Book# Online location of your book
-  path_to_book: docs  # Optional path to your book, relative to the repository root
-  branch: doc  # Which branch of the repository should be used when creating links (optional)
+  url: https://naeima.github.io/FOO-Book/intro.html# Online location of your book
+  path_to_book: deploy  # Optional path to your book, relative to the repository root
+  branch: deploy  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
   use_issues_button: true
   use_repository_button: true
+
 
 #Enable activate execution tracebacks
 sphinx:
@@ -42,6 +44,17 @@ sphinx:
     html_js_files:
     - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
 
-# _config.yml
+# Add google colab
+launch_buttons:
+  colab_url: "https://colab.research.google.com/drive/1kTW-AzkyuoNzTgCxBLeC1scC42OqKDeY?usp=sharing"
+
+# Add extra HTML to my left navbar
 html:
-  extra_footer: "_includes/chatbot.html"
+    extra_navbar: |
+        <div>
+            - chatbot.html
+        </div>
+
+# Add announcement 
+html:
+    announcement: "Chat with FOO at https://foodatastore.zapier.app"
