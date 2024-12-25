@@ -3,7 +3,7 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: intro 
 parts:
 - caption: FOO Lifecycle
   chapters:
@@ -17,25 +17,19 @@ parts:
   chapters:
   - file: Data/collar
   - file: Data/soil
-  - file: Data/soilRml
-  - file: Data/soilYarrrml
-  - file: Data/soilKG
   - file: Data/veg
   - file: Data/image
-  - file: Data/RML
 
-- caption: FOO playground
+- caption: FOO playground and Chatbot
   chapters:
   - file: playground/notebooks
+  - file: playground/chatbot
+
 
 - caption: FOO DOWNLOADS
   chapters:
   - file: linked/JSON
-  - file: linked/DOCS
-  - file: linked/RDF
-  - file: linked/TURTLE
-
-  
+  - file: linked/foo
 
 - caption: Using FOO
   chapters:
