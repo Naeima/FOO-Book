@@ -1,4 +1,4 @@
-https://ontology.forest-observatory.org
+The website is live : https://ontology.forest-observatory.cardiff.ac.uk 
+                      https://ontology.forest-observatory.org
 
-
-This website is published from the (docs) branch. 
+Published from the (docs) branch. 
