@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>FOO Chatbot &#8212; Forest Observatory Ontology (FOO)</title>
+    <title>FOO chatbot &#8212; Forest Observatory Ontology (FOO)</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -186,7 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   FOO Chatbot
+   FOO chatbot
   </a>
  </li>
 </ul>
@@ -391,8 +391,8 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#https-naeima-github-io-foochatbot">
-   https://naeima.github.io/FOOchatbot/
+  <a class="reference internal nav-link" href="#https-huggingface-co-spaces-naeima-foo">
+   https://huggingface.co/spaces/Naeima/FOO
   </a>
  </li>
 </ul>
@@ -404,7 +404,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>FOO Chatbot</h1>
+                <h1>FOO chatbot</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -415,8 +415,8 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#https-naeima-github-io-foochatbot">
-   https://naeima.github.io/FOOchatbot/
+  <a class="reference internal nav-link" href="#https-huggingface-co-spaces-naeima-foo">
+   https://huggingface.co/spaces/Naeima/FOO
   </a>
  </li>
 </ul>
@@ -430,13 +430,106 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="foo-chatbot">
-<h1>FOO Chatbot<a class="headerlink" href="#foo-chatbot" title="Permalink to this headline">#</a></h1>
-<p>Please follow the link below to chat with FOO.</p>
-<section id="https-naeima-github-io-foochatbot">
-<h2><a class="reference external" href="https://naeima.github.io/FOOchatbot/">https://naeima.github.io/FOOchatbot/</a><a class="headerlink" href="#https-naeima-github-io-foochatbot" title="Permalink to this headline">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<h1>FOO chatbot<a class="headerlink" href="#foo-chatbot" title="Permalink to this headline">#</a></h1>
+<section id="https-huggingface-co-spaces-naeima-foo">
+<h2><a class="reference external" href="https://huggingface.co/spaces/Naeima/FOO">https://huggingface.co/spaces/Naeima/FOO</a><a class="headerlink" href="#https-huggingface-co-spaces-naeima-foo" title="Permalink to this headline">#</a></h2>
+<p>‘’’python</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from rdflib import Graph
+import gradio as gr
+foo_KG = Graph()
+foo_KG.parse(&quot;https://naeima.github.io/fooKG/index.ttl&quot;, format=&quot;ttl&quot;)
+def handle_question(question):
+    try:
+        q = question.lower()
+        if &quot;gps&quot; in q or &quot;location&quot; in q:
+            query = &quot;&quot;&quot;
+            PREFIX foo: &lt;https://w3id.org/def/foo#&gt;
+            SELECT ?id ?latitude ?longitude ?localDate
+            WHERE {
+            ?s a foo:gPSObservation ;
+                foo:id ?id ;
+                foo:latitude ?latitude ;
+                foo:longitude ?longitude ;
+                foo:localDate ?localDate .
+            }
+            ORDER BY ?localDate
+            LIMIT 5
+            &quot;&quot;&quot;
+            rows = [row.asdict() for row in foo_KG.query(query)]
+            return &quot;\n\n&quot;.join([
+                f&quot;🛰️ ID: {r[&#39;id&#39;]}, 🌍 Lat: {r[&#39;latitude&#39;]}, Long: {r[&#39;longitude&#39;]}, 📅 Date: {r[&#39;localDate&#39;]}&quot;
+                for r in rows
+            ]) if rows else &quot;No GPS data found.&quot;
+
+        elif &quot;tree&quot; in q or &quot;liana&quot; in q or &quot;plot&quot; in q:
+            query = &quot;&quot;&quot;
+            PREFIX foo: &lt;https://w3id.org/def/foo#&gt;
+            SELECT ?id ?treeID ?treeHeightM ?treeDbhCm ?treeNLianas ?sitePlotCode ?siteName
+            WHERE {
+            ?s a foo:treeObservation ;
+                foo:id ?id ;
+                foo:treeID ?treeID ;
+                foo:treeHeightM ?treeHeightM ;
+                foo:treeDbhCm ?treeDbhCm ;
+                foo:treeNLianas ?treeNLianas ;
+                foo:sitePlotCode ?sitePlotCode ;
+                foo:siteName ?siteName .
+            }
+            LIMIT 5
+            &quot;&quot;&quot;
+            rows = [row.asdict() for row in foo_KG.query(query)]
+            return &quot;\n\n&quot;.join([
+                f&quot;🌳 Tree ID: {r[&#39;treeID&#39;]} ({r[&#39;id&#39;]}), Height: {r[&#39;treeHeightM&#39;]} m, DBH: {r[&#39;treeDbhCm&#39;]} cm, Lianas: {r[&#39;treeNLianas&#39;]}, Plot: {r[&#39;sitePlotCode&#39;]} @ {r[&#39;siteName&#39;]}&quot;
+                for r in rows
+            ]) if rows else &quot;No tree/liana observations found.&quot;
+
+        elif &quot;soil&quot; in q or &quot;ph&quot; in q or &quot;clay&quot; in q or &quot;carbon&quot; in q or &quot;nitrogen&quot; in q:
+            query = &quot;&quot;&quot;
+            PREFIX foo: &lt;https://w3id.org/def/foo#&gt;
+            SELECT ?identifier ?soilPH ?totalC ?totalN ?cNRatio ?plotName ?landUse ?site
+            WHERE {
+            ?s a foo:Observation ;
+                foo:identifier ?identifier ;
+                foo:soilPH ?soilPH ;
+                foo:totalC ?totalC ;
+                foo:totalN ?totalN ;
+                foo:cNRatio ?cNRatio ;
+                foo:plotName ?plotName ;
+                foo:landUse ?landUse ;
+                foo:site ?site .
+            }
+            LIMIT 5
+            &quot;&quot;&quot;
+            rows = [row.asdict() for row in foo_KG.query(query)]
+            return &quot;\n\n&quot;.join([
+                f&quot;🧪 Site: {r[&#39;site&#39;]} ({r[&#39;plotName&#39;]}, {r[&#39;identifier&#39;]}), pH: {r[&#39;soilPH&#39;]}, C: {r[&#39;totalC&#39;]}, N: {r[&#39;totalN&#39;]}, C/N: {r[&#39;cNRatio&#39;]}, Land use: {r[&#39;landUse&#39;]}&quot;
+                for r in rows
+            ]) if rows else &quot;No soil data found.&quot;
+
+        else:
+            return &quot;I support questions about GPS observations, tree/liana features, and soil chemistry. Try asking about tree height, GPS data, or soil pH.&quot;
+
+    except Exception as e:
+        return f&quot;❌ Error: {e}&quot;
+gr.Interface(
+    fn=handle_question,
+    inputs=gr.Textbox(lines=2, placeholder=&quot;Ask about GPS, trees, or soil observations...&quot;),
+    outputs=&quot;text&quot;,
+    title=&quot;FOO Chatbot&quot;,
+    description=&quot;Ask questions about GPS, tree/liana, and soil observations from FOO.&quot;,
+    examples=[
+        &quot;Show me GPS observation data.&quot;,
+        &quot;How many GPS observations are there?&quot;,
+        &quot;List liana observations with tree heights.&quot;,
+        &quot;What is the soil pH at Maliau Basin?&quot;,
+        &quot;Show me soil nitrogen and carbon values.&quot;,
+        &quot;Where are trees with more than 5 lianas?&quot;,
+        &quot;Give me site and plot info for tree observations.&quot;
+    ]
+).launch()
 </pre></div>
 </div>
+<p>‘’’</p>
 </section>
 </section>
 
