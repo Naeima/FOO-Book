@@ -414,11 +414,6 @@ for filename in uploaded.keys():
         name=filename, length=len(uploaded[filename])))
     df = pd.read_csv(filename)
 
-# GPS collar
-import csv
-from rdflib import Graph, Namespace, URIRef, Literal
-from rdflib.namespace import RDF, XSD
-
 # Define namespaces
 FOO = Namespace(&quot;https://w3id.org/def/foo#&quot;)
 SOSA = Namespace(&quot;http://www.w3.org/ns/sosa/&quot;)
@@ -433,7 +428,7 @@ g.bind(&quot;sosa&quot;, SOSA)
 g.bind(&quot;geo&quot;, GEO)
 
 # Path to your CSV file
-csv_file_path = &quot;Jasmin.csv&quot;  # Adjust the path accordingly
+csv_file_path = &quot;Jasmin.csv&quot;  # Adjust the path accordingly, Jasmin is an elephant. 
 
 # Read and process data
 with open(csv_file_path, newline=&#39;&#39;, encoding=&#39;utf-8-sig&#39;) as csvfile:
@@ -459,49 +454,44 @@ with open(csv_file_path, newline=&#39;&#39;, encoding=&#39;utf-8-sig&#39;) as cs
         distance = row.get(&#39;Distance&#39;, &#39;&#39;).strip()
         count = row.get(&#39;Count&#39;, &#39;&#39;).strip()
 
-        # Create sensor URI
-        sensor = URIRef(f&quot;https://w3id.org/def/foo#{identifier}&quot;)
-        g.add((sensor, RDF.type, FOO.Jasmin))
-        g.add((sensor, FOO.ID, Literal(identifier, datatype=XSD.string)))
-        g.add((sensor, FOO.hasFeatureOfInterest, FOO.ElephasMaximus))
-
         # Create observation URI
         observation = URIRef(f&quot;https://w3id.org/def/foo#{identifier}&quot;)
-        g.add((observation, RDF.type, FOO.Observation))
-        g.add((observation, FOO.madeBySensor, sensor))  # Link sensor to observation
+        g.add((observation, RDF.type, FOO.gPSObservation))
+        g.add((observation, FOO.id, Literal(identifier, datatype=XSD.string)))
+        g.add((observation, FOO.madeBySensor, FOO.jasminGPS))  # Link sensor to observation
+        g.add((observation, FOO.hasFeatureOfInterest, FOO.jasmin))
 
         # Add observation properties
-        g.add((observation, FOO.LocalDate, Literal(local_date, datatype=XSD.date)))
-        g.add((observation, FOO.LocalTime, Literal(local_time, datatype=XSD.time)))
-        g.add((observation, FOO.GMTDate, Literal(gmt_date, datatype=XSD.date)))
-        g.add((observation, FOO.GMTTime, Literal(gmt_time, datatype=XSD.time)))
-        g.add((observation, FOO.Latitude, Literal(lat, datatype=XSD.double)))
-        g.add((observation, FOO.Longitude, Literal(long, datatype=XSD.double)))
+        g.add((observation, FOO.localDate, Literal(local_date, datatype=XSD.date)))
+        g.add((observation, FOO.localTime, Literal(local_time, datatype=XSD.time)))
+        g.add((observation, FOO.gMTDate, Literal(gmt_date, datatype=XSD.date)))
+        g.add((observation, FOO.gMTTime, Literal(gmt_time, datatype=XSD.time)))
+        g.add((observation, GEO.latitude, Literal(lat, datatype=XSD.double)))
+        g.add((observation, GEO.longitude, Literal(long, datatype=XSD.double)))
 
         # Add observable properties if available
         if temperature:
-            g.add((observation, FOO.Temperature, Literal(temperature, datatype=XSD.double)))
+            g.add((observation, FOO.temperature, Literal(temperature, datatype=XSD.double)))
         if speed:
-            g.add((observation, FOO.Speed, Literal(speed, datatype=XSD.double)))
+            g.add((observation, FOO.speed, Literal(speed, datatype=XSD.double)))
         if direction:
-            g.add((observation, FOO.Direction, Literal(direction, datatype=XSD.integer)))
+            g.add((observation, FOO.direction, Literal(direction, datatype=XSD.integer)))
         if altitude:
-            g.add((observation, FOO.Altitude, Literal(altitude, datatype=XSD.string)))
+            g.add((observation, FOO.altitude, Literal(altitude, datatype=XSD.string)))
         if cov:
-            g.add((observation, FOO.Cov, Literal(cov, datatype=XSD.double)))
+            g.add((observation, FOO.cov, Literal(cov, datatype=XSD.double)))
         if hdop:
-            g.add((observation, FOO.HDOP, Literal(hdop, datatype=XSD.double)))
+            g.add((observation, FOO.hDOP, Literal(hdop, datatype=XSD.double)))
         if distance:
-            g.add((observation, FOO.Distance, Literal(distance, datatype=XSD.double)))
+            g.add((observation, FOO.distance, Literal(distance, datatype=XSD.double)))
         if count:
-            g.add((observation, FOO.Count, Literal(count, datatype=XSD.integer)))
+            g.add((observation, FOO.cOUNT, Literal(count, datatype=XSD.integer)))
 
 # Serialize the graph to a file
 output_file = &quot;sensor_knowledge_graph.ttl&quot;
 g.serialize(destination=output_file, format=&quot;turtle&quot;)
 
 print(f&quot;Knowledge graph has been serialized to {output_file}&quot;)
-
 # Download the file
 files.download(output_file)
 
