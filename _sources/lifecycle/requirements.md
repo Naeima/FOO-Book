@@ -46,4 +46,6 @@ The Web Ontology Language (OWL2) is used to implement FOO.
 
 • FOO should be interoperable with existing wildlife data standards and systems.
 
-• FOO The ontology must perform efficiently when reasoning over large datasets.
+• FOO must perform efficiently when reasoning over large datasets.
+
+
