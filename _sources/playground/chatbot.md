@@ -1,7 +1,9 @@
-# FOO chatbot
-## https://huggingface.co/spaces/Naeima/FOO 
+# FOO Chatbot
 
-'''python 
+![FOO Chatbot](/img/bot.png)
+### https://huggingface.co/spaces/Naeima/FOO 
+
+'''Source Code
 
     from rdflib import Graph
     import gradio as gr
